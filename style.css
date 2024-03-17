@@ -53,13 +53,8 @@ body {
 	color: #DEDEDE;
 }
 
-.header-item-end {
-	/* padding-right:0; */
-}
-
 .background {
 	width:100%;
-	/* height:1130px; */
 	background-position:center;
 	background-image:url('images/organkeysb&w.png');
 }
@@ -223,15 +218,11 @@ body {
 
 .bio-images {
 	text-align: center;
-	/* width:100% !important; */
-	/* height: auto; */
 	margin:0 auto;
 }
 
 .Repertoire-text {
 	overflow:scroll;
-	/* height:500px; */
-	/* width:950px */
 }
 
 .sec-g {
@@ -241,12 +232,11 @@ body {
 
 .g-img {
 	height:261px;
-	width:410px;
-	margin:0 auto 0 auto;
+	width:100%;
+	margin:0 auto;
 	border-radius:2px;
 	background-repeat:no-repeat;
 	display: inline-block;
-	/* margin-right:20px; */
 	margin-top:80px;
 	background-position:center top;
 	text-align:center;
@@ -257,7 +247,6 @@ body {
 @media (max-width:768px) {
 	.g-img {
 		width:90%;
-		/* height:400px; */
 	}
 }
 
@@ -317,6 +306,28 @@ body {
 .g-img-13 {
 	background-image:url('images/photo13.jpg');
 }
+.g-img-14 {
+	background-image:url('images/Copenhagen.jpeg');
+}
+.g-img-15 {
+	background-image:url('images/Prague.jpeg');
+}
+.g-img-16 {
+	background-image:url('images/Hamburg.jpeg');
+}
+.g-img-17 {
+	background-image:url('images/Zurich.png');
+}
+.g-img-18 {
+	background-image:url('images/Croydon.png');
+}
+.g-img-19 {
+	background-image:url('images/RFH.png');
+}
+.g-img-20 {
+	background-image:url('images/Oxted.png');
+}
+
 
 .Contact-sec {
 	padding-bottom:100px;
@@ -372,14 +383,6 @@ body {
 
 .fb:hover {
 	opacity:0.6	;
-}
-
-.twt {
-	background-image:url('images/twitter.png');
-}
-
-.twt:hover {
-	opacity:0.6;
 }
 
 .ins {
