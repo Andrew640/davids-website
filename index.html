@@ -4,27 +4,65 @@
         <title>David Thomas MA LRAM ARCO LTCL DipABRSM</title>
         <meta name="Description" content="Alongside freelance work as an organist, David Thomas is the Director of Music at St. Mary's Church in Sanderstead. He directs the choir for the weekly Choral Eucharist and monthly Choral Evensong services. David is also the Organist at St. James’ Church in Riddlesdown where he accompanies the weekly Sung Eucharist service. David also provides tuition to numerous students for organ, piano and music theory.">
         <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+        <link rel="manifest" href="/site.webmanifest">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Mr+De+Haviland&display=swap" rel="stylesheet">
         <script src="david.js"></script>
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script>
+            function myFunction() {
+              var x = document.getElementById("mobile");
+              if (x.style.display === "flex") {
+                x.style.display = "none";
+              } else {
+                x.style.display = "flex";
+              }
+            }
+        </script>
     </head>
 
     <body>
-
-        <div class='background'>
-            <div class='davidthomas white'>David Thomas</div>
-            <div class='quals white'>MA FRCO LRAM LTCL DipABRSM</div>
-            <div class='info white'>Organist, Pianist and Teacher</div>
-            <div id='header'>
-                <a class='header-item' href='#Biography'>Biography</a>
-                <a class='header-item' href='#Recitals'>Future recitals</a>
-                <a class='header-item' href='#Recordings'>Recordings</a>
-                <a class='header-item header-item-photos' href='#Photos'>Photos</a>
-                <br>
-                <a class='header-item' href='#Teaching'>Music Tuition</a>
-                <a class='header-item header-item-end' href='#Contact'>Contact</a>
+        <div class="header">
+            <a href='#top' class="davidthomas">David Thomas</a>
+            <ul class="web">
+                <li><a href='#Biography'>Biography</a>
+                <li><a href='#Recitals'>Future recitals</a>
+                <li><a href='#Recordings'>Recordings</a>
+                <li><a href='#Photos'>Photos</a>
+                <li><a href='#Teaching'>Music Tuition</a>
+                <li class="button-purple">
+                    <a href='#Contact'>Contact</a>
+                </li>
+            </ul>
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                <i class="icon fa fa-bars"></i>
+            </a>
+            <div id="mobile">
+                <ul class="mobile-menu">
+                    <li class="mobile-menu-pad"><a href='#Biography' onclick="myFunction()">Biography</a>
+                    <li class="mobile-menu-pad"><a href='#Recitals' onclick="myFunction()">Future recitals</a>
+                    <li class="mobile-menu-pad"><a href='#Recordings' onclick="myFunction()">Recordings</a>
+                    <li class="mobile-menu-pad"><a href='#Photos' onclick="myFunction()">Photos</a>
+                    <li class="mobile-menu-pad"><a href='#Teaching' onclick="myFunction()">Music Tuition</a>
+                    <li class="mobile-menu-pad" class="button-purple" onclick="myFunction()">
+                        <a href='#Contact'>Contact</a>
+                    </li>
+                </ul>
             </div>
+        </div>
+
+        <div id="top" class='background'>
             <div class='main-img'></div>
+            <div class="main-des">
+                <div class='info'>Organist, Pianist<br>and Teacher</div>
+                <div class='quals'>MA FRCO LRAM LTCL DipABRSM</div>
+            </div>
         </div>
         <div id='Biography' class='sec-bio sec-w'>
             <div class='sec-title Biography'>Biography</div>
@@ -36,19 +74,18 @@
                 <br><br>
             </div>
             <div class='text Biography-text'>
-                <a class='a2' href='https://www.stjohnsshirley.org.uk/' target="_blank">https://www.stjohnsshirley.org.uk/</a>
+                <a class='a2' href='https://www.stjohnsshirley.org.uk/' target="_blank">stjohnsshirley.org.uk</a>
             </div>
             <br>
             <div class='text Biography-text'>
-                <a class='a2' href='https://www.rco.org.uk/education_find_teacher.php' target="_blank">https://www.rco.org.uk/education_find_teacher.php</a>
+                <a class='a2' href='https://www.rco.org.uk/education_find_teacher.php' target="_blank">rco.org.uk/education_find_teacher</a>
             </div>
             <br>
             <div class='text Biography-text'>
-                <a class='a2' href='https://stmarysanderstead.org.uk/choir/' target="_blank">https://stmarysanderstead.org.uk/choir/</a>
+                <a class='a2' href='https://stmarysanderstead.org.uk/choir/' target="_blank">stmarysanderstead.org.uk/choir</a>
             </div>
-            <div class='bio-images'>
+            <div class='bio-image'>
                 <div class='img-1'></div>
-                <!-- <div class='img-2'></div> -->
             </div>
         </div>
          <div id='Recitals' class='sec-small sec-g'>
@@ -57,7 +94,7 @@
             <div class='text line-height'>
                 David's future recitals are listed on:
                 <br>
-                <a class='a' href='http://www.organrecitals.com/1/diary_org.php' target="_blank">www.organrecitals.com</a>
+                <a class='a' href='http://www.organrecitals.com/1/diary_org.php' target="_blank">organrecitals.com</a>
             </div>
         </div>
         <div id='Recordings' class='sec sec-w'>
@@ -215,7 +252,7 @@
         <div id='Teaching' class='sec-small sec-w'>
             <div class='arrow-grey'></div>
             <div class='sec-title'>Music Tuition</div>
-            <div class='text line-height'>David teaches piano (including jazz piano), music theory, and organ to all ages and abilities, from beginner to grade 8 and diploma level. He offers both face-face lessons and online lessons.</div>
+            <div class='text'>David teaches piano (including jazz piano), music theory, and organ to all ages and abilities, from beginner to grade 8 and diploma level. He offers both face-face lessons and online lessons.</div>
             <div class="text text-plus">A member of:</div>
             <div class="flex-line">
                 <span class="ISM"></span>
@@ -229,9 +266,9 @@
             <br>
             <br>
             <form action="https://formspree.io/davidthomas096@gmail.com" method="POST">
-                Name<br><input class='form' type="text" name="name"><br><br>
-                Email<br><input class='form' type="email" name="_replyto"><br><br>
-                Message<br><textarea class='form message' type="text" name="message"></textarea><br><br>
+                <span class="label">Name</span><input class='form' type="text" name="name"><br><br>
+                <span class="label">Email</span><input class='form' type="email" name="_replyto"><br><br>
+                <span class="label">Message</span><textarea class='form message' type="text" name="message"></textarea><br><br>
                 <input class='submit' type="submit" value="Send">
                 <input type="hidden" name="_next" value="http://davidthomasorganist.co.uk/#Contact" />
                 <input type="hidden" name="_subject" value="Website message" />
