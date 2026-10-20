@@ -2,7 +2,7 @@ import { load as loadYaml } from "js-yaml";
 import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
 
 const site = {
-  url: "http://davidthomasorganist.co.uk",
+  url: "https://davidthomasorganist.co.uk",
   formAction: "https://formspree.io/davidthomas096@gmail.com",
   year: new Date().getFullYear(),
   // Changes on every build so browsers fetch the new stylesheet after a deploy.

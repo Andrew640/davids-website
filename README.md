@@ -42,5 +42,10 @@ npm start        # http://localhost:8080
 3. **Pages CMS.** Sign in at `app.pagescms.org` with GitHub, install the Pages CMS GitHub
    App on this repo, open it, then invite David by email as a collaborator.
 
+The site is served over HTTPS by CloudFront (distribution `E374ONS7HKKMDW`, on the
+CloudFront **Free** flat-rate plan, $0/month with no overage charges) in front of the S3
+website endpoint. The deploy clears CloudFront's cache using the repo variable
+`CLOUDFRONT_DISTRIBUTION_ID`, and `www` redirects to the bare domain.
+
 Deploys never delete anything from the bucket. Removed photos and recordings just stop
 being linked from the page.
