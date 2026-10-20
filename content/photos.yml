@@ -1,6 +1,4 @@
 photos:
-  - image: /images/photo1.jpg
-    caption: Performing during the pre-concert talk to Jane Parker-Smith's organ recital at the Royal Festival Hall
   - image: /images/photo2.jpg
     caption: RCO Masterclass at the Grote Kerk, Haarlem, Amsterdam
   - image: /images/photo3.jpg
@@ -15,10 +13,10 @@ photos:
     caption: Performing to Dame Gillian Weir at the Royal Festival Hall
   - image: /images/photo12.jpg
     caption: Performing to Dame Gillian Weir at the Royal Festival Hall
-  - image: /images/photo13.jpg
-    caption: Organ Fair at the Royal Festival Hall
   - image: /images/photo8.jpg
-    caption: St. Mary's Church Choir 2021
+    caption: St. Mary's, Sanderstead Church Choir, 2021
+  - image: /images/st-johns-shirley-choir-2026.jpeg
+    caption: St. John's, Shirley Church Choir, 2026
   - image: /images/photo11.jpg
     caption: Performing on the Sauer-Organ at the Thomaskirche, Leipzig
   - image: /images/photo10.jpg
@@ -26,13 +24,13 @@ photos:
   - image: /images/photo9.jpg
     caption: Performing at Reading Town Hall
   - image: /images/Copenhagen.jpeg
-    caption: Playing the organ of Copenhagen Cathedral
+    caption: Playing the organ at Copenhagen Cathedral
   - image: /images/Prague.jpeg
-    caption: Playing the organ of the Mirror Chapel, Prague
+    caption: Playing the organ at the Mirror Chapel, Prague
   - image: /images/Hamburg.jpeg
-    caption: Playing the organ of the St. Michael's Church, Hamburg
+    caption: Playing the organ at St. Michael's Church, Hamburg
   - image: /images/Zurich.png
-    caption: Playing the organ of St. Peter's Church, Zurich
+    caption: Playing the organ at St. Peter's Church, Zurich
   - image: /images/Croydon.png
     caption: Accompanying carol services at Croydon Minster
   - image: /images/RFH.png
@@ -46,6 +44,12 @@ photos:
   - image: /images/paris.jpeg
     caption: Playing the organ at L'église Notre-Dame-des-Champs, Paris
   - image: /images/photo14.jpg
-    caption: Playing the organ of Antwerp Cathedral
+    caption: Playing the organ at Antwerp Cathedral
   - image: /images/photo15.png
-    caption: Playing the organ of Brussels Cathedral
+    caption: Playing the organ at Brussels Cathedral
+  - image: /images/lucerne-hofkirche.png
+    caption: Playing the organ at the Hofkirche, St. Leodegar, Lucerne, Switzerland
+  - image: /images/vienna-st-stephens-cathedral.jpeg
+    caption: Playing the organ at St. Stephen's Cathedral, Vienna
+  - image: /images/vienna-jesuit-church.png
+    caption: Playing the organ at the Jesuit Church, Vienna

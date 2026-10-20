@@ -15,7 +15,7 @@ html {
   display: none;
   color: #fff;
   font-size: 22px;
-  background-color: #383b53;
+  background-color: #1e2b4a;
   position: absolute;
   right: 0;
   top: 96px;
@@ -129,10 +129,10 @@ a {
 }
 
 .button-purple {
-  color: #fff;
+  color: #1e2b4a;
   padding: 12px 24px;
   border-radius: 8px;
-  background-color: #617afa;
+  background-color: #f2a922;
   font-weight: 500;
   cursor: pointer;
 }
@@ -157,7 +157,7 @@ a {
 .main-des {
   font-size: 52px;
   line-height: 45px;
-  font-weight: 500;
+  font-weight: 300;
   margin-left: 30px;
   margin-right: 24px;
 }
@@ -175,6 +175,8 @@ a {
 }
 
 .quals {
+  font-weight: 400;
+  letter-spacing: 0.04em;
   margin-top: 20px;
   line-height: 45px;
   font-size: 24px;
@@ -230,7 +232,7 @@ a {
   border-right: 30px solid transparent;
   margin-left: auto;
   margin-right: auto;
-  border-top: 30px solid #383b53;
+  border-top: 30px solid #1e2b4a;
 }
 
 .sec-small {
@@ -372,7 +374,7 @@ a {
 }
 
 .sec-g {
-  background-color: #383b53;
+  background-color: #1e2b4a;
   width: 100%;
   color: #ffffff;
 }
@@ -402,6 +404,7 @@ a {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  margin-bottom: 24px;
 }
 
 .section-images .item {
@@ -455,11 +458,10 @@ picture {
   font-size: 20px;
   border: none;
   border-radius: 8px;
-  color: #ffffff;
   cursor: pointer;
-  color: #fff;
+  color: #1e2b4a;
   padding: 12px 24px;
-  background-color: #617afa;
+  background-color: #f2a922;
   font-weight: 500;
   cursor: pointer;
 }
