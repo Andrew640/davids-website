@@ -53,4 +53,7 @@ jobs:
       - name: Upload page and stylesheet
         run: |
           aws s3 cp _site/style.css "$BUCKET/style.css" --cache-control "public, max-age=300"
+          for f in robots.txt sitemap.xml error.html; do
+            aws s3 cp "_site/$f" "$BUCKET/$f" --cache-control "public, max-age=3600"
+          done
           aws s3 cp _site/index.html "$BUCKET/index.html" --cache-control "no-cache"

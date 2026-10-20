@@ -1,9 +1,16 @@
 import { load as loadYaml } from "js-yaml";
 import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
 
+const site = {
+  url: "http://davidthomasorganist.co.uk",
+  formAction: "https://formspree.io/davidthomas096@gmail.com",
+  year: new Date().getFullYear(),
+};
+
 export default function (eleventyConfig) {
   // content/*.yml (edited in Pages CMS) become template data: content/photos.yml -> `photos`
   eleventyConfig.addDataExtension("yml", (contents) => loadYaml(contents));
+  eleventyConfig.addGlobalData("site", site);
 
   eleventyConfig.addPassthroughCopy("style.css");
   eleventyConfig.addPassthroughCopy("images");
@@ -11,6 +18,41 @@ export default function (eleventyConfig) {
 
   eleventyConfig.addFilter("nl2br", (str) => String(str ?? "").replace(/\r?\n/g, "<br />"));
   eleventyConfig.addFilter("encodeURI", (str) => encodeURI(str ?? ""));
+  eleventyConfig.addFilter("isoDate", (date) => new Date(date).toISOString().slice(0, 10));
+
+  // schema.org data so search engines understand who David is and what he offers.
+  eleventyConfig.addFilter("jsonLd", (site, home, settings) => {
+    const person = {
+      "@type": "Person",
+      "@id": `${site.url}/#david`,
+      name: "David Thomas",
+      honorificSuffix: home.qualifications,
+      jobTitle: "Organist, pianist and music teacher",
+      url: `${site.url}/`,
+      image: home.image ? `${site.url}${home.image}` : undefined,
+      sameAs: [
+        "https://www.facebook.com/profile.php?id=1342925540",
+        "https://www.instagram.com/david.thomas096/",
+      ],
+    };
+    const lessons = {
+      "@type": "LocalBusiness",
+      "@id": `${site.url}/#lessons`,
+      name: "David Thomas – Piano, Organ and Music Theory Lessons",
+      description: settings.description,
+      url: `${site.url}/`,
+      image: home.image ? `${site.url}${home.image}` : undefined,
+      founder: { "@id": `${site.url}/#david` },
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Sanderstead, South Croydon",
+        addressCountry: "GB",
+      },
+      areaServed: ["Sanderstead", "South Croydon", "Croydon", "Purley", "Warlingham"],
+    };
+    const json = JSON.stringify({ "@context": "https://schema.org", "@graph": [person, lessons] });
+    return json.replace(/</g, "\\u003c");
+  });
 
   // Every <img> in the page is resized to at most 1600px wide and served as
   // WebP with a JPEG fallback, so uploads straight off a phone stay small.

@@ -1,243 +1,232 @@
 {#- Page template. The text, photos and recordings live in content/*.yml and are
     edited through Pages CMS (see .pages.yml). Run `npm start` to preview. -#}
-{%- macro sectionImages(items) -%}
+{%- macro sectionImages(items, defaultAlt) -%}
   {%- if items and items.length %}
-      <div class="section-images">
-        {%- for item in items %}{% if item.image %}
-        <figure class="item">
-          <img class="section-img" src="{{ item.image }}" alt="{{ item.caption }}" />
-          {%- if item.caption %}
-          <figcaption class="caption">{{ item.caption }}</figcaption>
-          {%- endif %}
-        </figure>
-        {%- endif %}{% endfor %}
-      </div>
+        <div class="section-images">
+          {%- for item in items %}{% if item.image %}
+          <figure class="section-figure">
+            <img class="section-img" src="{{ item.image }}" alt="{{ item.caption or defaultAlt }}" />
+            {%- if item.caption %}
+            <figcaption>{{ item.caption }}</figcaption>
+            {%- endif %}
+          </figure>
+          {%- endif %}{% endfor %}
+        </div>
   {%- endif %}
 {%- endmacro -%}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>{{ settings.title }}</title>
-    <meta name="Description" content="{{ settings.description }}" />
-    <link rel="stylesheet" type="text/css" href="style.css" />
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="/images/apple-touch-icon.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="/images/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="/images/favicon-16x16.png"
-    />
-    <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+    <meta name="description" content="{{ settings.description }}" />
+    <link rel="canonical" href="{{ site.url }}/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:site_name" content="David Thomas" />
+    <meta property="og:title" content="{{ settings.title }}" />
+    <meta property="og:description" content="{{ settings.description }}" />
+    <meta property="og:url" content="{{ site.url }}/" />
+    {%- if home.image %}
+    <meta property="og:image" content="{{ site.url }}{{ home.image }}" />
+    {%- endif %}
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" type="image/svg+xml" href="/images/logo-mark.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+    <link rel="manifest" href="/images/site.webmanifest" />
+    <meta name="theme-color" content="#1b2540" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Mr+De+Haviland&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap"
       rel="stylesheet"
     />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-    <script>
-      function myFunction() {
-        var x = document.getElementById("mobile");
-        if (x.style.display === "flex") {
-          x.style.display = "none";
-        } else {
-          x.style.display = "flex";
-        }
-      }
+    <link rel="stylesheet" href="/style.css" />
+
+    <script type="application/ld+json">
+      {{ site | jsonLd(home, settings) | safe }}
     </script>
   </head>
 
   <body>
-    <div class="header">
-      <a href="#top" class="davidthomas">David Thomas</a>
-      <ul class="web">
-        <li><a href="#Biography">Biography</a></li>
-        <li><a href="#Recitals">Future recitals</a></li>
-        <li><a href="#Recordings">Recordings</a></li>
-        <li><a href="#Photos">Photos</a></li>
-        <li><a href="#Teaching">Music Tuition</a></li>
-        <li class="button-purple">
-          <a href="#Contact">Contact</a>
-        </li>
-      </ul>
-      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-        <i class="icon fa fa-bars"></i>
-      </a>
-      <div id="mobile">
-        <ul class="mobile-menu">
-          <li class="mobile-menu-pad">
-            <a href="#Biography" onclick="myFunction()">Biography</a>
-          </li>
-          <li class="mobile-menu-pad">
-            <a href="#Recitals" onclick="myFunction()">Future recitals</a>
-          </li>
-          <li class="mobile-menu-pad">
-            <a href="#Recordings" onclick="myFunction()">Recordings</a>
-          </li>
-          <li class="mobile-menu-pad">
-            <a href="#Photos" onclick="myFunction()">Photos</a>
-          </li>
-          <li class="mobile-menu-pad">
-            <a href="#Teaching" onclick="myFunction()">Music Tuition</a>
-          </li>
-          <li class="mobile-menu-pad" onclick="myFunction()">
-            <a href="#Contact">Contact</a>
-          </li>
-        </ul>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="#top" class="logo" aria-label="David Thomas, back to top">
+          <img eleventy:ignore src="/images/logo-mark.svg" alt="" width="36" height="36" />
+          <span class="logo-text">
+            <span class="logo-name">David Thomas</span>
+            <span class="logo-tag">Organist · Pianist · Teacher</span>
+          </span>
+        </a>
+        <button class="menu-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
+          <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true">
+            <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          </svg>
+        </button>
+        <nav id="site-nav" class="site-nav" aria-label="Main">
+          <a href="#Biography">Biography</a>
+          <a href="#Recitals">Recitals</a>
+          <a href="#Recordings">Recordings</a>
+          <a href="#Photos">Photos</a>
+          <a href="#Teaching">Music tuition</a>
+          <a href="#Contact" class="button button-small">Contact</a>
+        </nav>
       </div>
-    </div>
+    </header>
 
-    <div id="top" class="background">
-      {%- if home.image %}
-      <img class="main-img" src="{{ home.image }}" alt="David Thomas" loading="eager" />
-      {%- endif %}
-      <div class="main-des">
-        <div class="info">{{ home.heading | escape | nl2br | safe }}</div>
-        <div class="quals">{{ home.qualifications }}</div>
-      </div>
-    </div>
-
-    <div id="Biography" class="sec-bio sec-w">
-      <div class="sec-title Biography">Biography</div>
-      <div class="text rich Biography-text">{{ biography.body | safe }}</div>
-      {{ sectionImages(biography.images) }}
-    </div>
-
-    <div id="Recitals" class="sec-small sec-g">
-      <div class="arrow-white"></div>
-      <div class="sec-title">Future recitals</div>
-      <div class="text rich line-height">{{ recitals.body | safe }}</div>
-      {{ sectionImages(recitals.images) }}
-    </div>
-
-    <div id="Recordings" class="sec sec-w recordings">
-      <div class="arrow-grey"></div>
-      <div class="sec-title">Recordings</div>
-      {%- for group in recordings.groups %}
-      <div class="sec-subtitle">{{ group.heading }}</div>
-      <div class="text">
-        {%- for track in group.tracks %}{% if track.file %}
-        <div class="track">
-          <div class="track-title">{{ track.title }}</div>
-          <audio class="audio" controls preload="metadata">
-            <source src="{{ track.file | encodeURI }}" type="audio/mpeg" />
-            Your browser does not support the audio element.
-          </audio>
-        </div>
-        {%- endif %}{% endfor %}
-      </div>
-      {%- endfor %}
-    </div>
-
-    <div id="Photos" class="sec-photos sec-g">
-      <div class="arrow-white"></div>
-      <div class="sec-title">Photos</div>
-      <div class="bio-images">
-        {%- for photo in photos.photos %}{% if photo.image %}
-        <figure class="item">
-          <img class="g-img" src="{{ photo.image }}" alt="{{ photo.caption }}" />
-          {%- if photo.caption %}
-          <figcaption class="caption">{{ photo.caption }}</figcaption>
+    <main id="main">
+      <section id="top" class="hero">
+        <div class="container hero-inner">
+          <div class="hero-text">
+            <p class="eyebrow">{{ home.qualifications }}</p>
+            <h1>
+              <span class="hero-name">David Thomas</span>
+              <span class="hero-role">{{ home.heading | escape | nl2br | safe }}</span>
+            </h1>
+            <div class="hero-actions">
+              <a class="button" href="#Teaching">Music lessons</a>
+              <a class="button button-ghost" href="#Contact">Get in touch</a>
+            </div>
+          </div>
+          {%- if home.image %}
+          <div class="hero-photo">
+            <img src="{{ home.image }}" alt="David Thomas at the organ" loading="eager" fetchpriority="high" />
+          </div>
           {%- endif %}
-        </figure>
-        {%- endif %}{% endfor %}
-      </div>
-    </div>
+        </div>
+      </section>
 
-    <div id="Teaching" class="sec-small sec-w">
-      <div class="arrow-grey"></div>
-      <div class="sec-title">Music Tuition</div>
-      <div class="text rich">{{ tuition.body | safe }}</div>
-      {{ sectionImages(tuition.images) }}
-      <div class="text text-plus">A member of:</div>
-      <div class="flex-line">
-        <span class="ISM"></span>
-        <span class="RCO"></span>
-      </div>
-    </div>
+      <section id="Biography" class="section">
+        <div class="container narrow">
+          <h2 class="section-title">Biography</h2>
+          <div class="rich">{{ biography.body | safe }}</div>
+          {{ sectionImages(biography.images, "David Thomas playing the organ") }}
+        </div>
+      </section>
 
-    <div id="Contact" class="sec Contact-sec sec-g text">
-      <div class="arrow-white"></div>
-      <div class="sec-title">Contact</div>
-      <div class="text rich">{{ contact.body | safe }}</div>
-      <br />
-      <form
-        action="https://formspree.io/davidthomas096@gmail.com"
-        method="POST"
-      >
-        <span class="label">Name</span
-        ><input class="form" type="text" name="name" /><br /><br />
-        <span class="label">Email</span
-        ><input class="form" type="email" name="_replyto" /><br /><br />
-        <span class="label">Message</span
-        ><textarea class="form message" type="text" name="message"></textarea
-        ><br /><br />
-        <input class="submit" type="submit" value="Send" />
-        <input
-          type="hidden"
-          name="_next"
-          value="http://davidthomasorganist.co.uk/#Contact"
-        />
-        <input type="hidden" name="_subject" value="Website message" />
-        <input type="text" name="_gotcha" style="display: none" />
-        <input type="text" name="_format" value="plain" style="display: none" />
-      </form>
-      <br />
-      <a
-        class="social fb"
-        href="https://www.facebook.com/profile.php?id=1342925540"
-      ></a>
-      <a
-        class="social ins"
-        href="https://www.instagram.com/david.thomas096/"
-      ></a>
-    </div>
+      <section id="Recitals" class="section section-dark">
+        <div class="container narrow center">
+          <h2 class="section-title">Future recitals</h2>
+          <div class="rich">{{ recitals.body | safe }}</div>
+          {{ sectionImages(recitals.images, "David Thomas in recital") }}
+        </div>
+      </section>
+
+      <section id="Recordings" class="section section-tint">
+        <div class="container">
+          <h2 class="section-title">Recordings</h2>
+          {%- for group in recordings.groups %}
+          <h3 class="group-title">{{ group.heading }}</h3>
+          <div class="tracks">
+            {%- for track in group.tracks %}{% if track.file %}
+            <div class="track">
+              <p class="track-title">{{ track.title }}</p>
+              <audio controls preload="metadata">
+                <source src="{{ track.file | encodeURI }}" type="audio/mpeg" />
+              </audio>
+            </div>
+            {%- endif %}{% endfor %}
+          </div>
+          {%- endfor %}
+        </div>
+      </section>
+
+      <section id="Photos" class="section section-dark">
+        <div class="container wide">
+          <h2 class="section-title">Photos</h2>
+          <div class="gallery">
+            {%- for photo in photos.photos %}{% if photo.image %}
+            <figure class="gallery-item">
+              <div class="gallery-frame">
+                <img src="{{ photo.image }}" alt="{{ photo.caption or 'David Thomas' }}" />
+              </div>
+              {%- if photo.caption %}
+              <figcaption>{{ photo.caption }}</figcaption>
+              {%- endif %}
+            </figure>
+            {%- endif %}{% endfor %}
+          </div>
+        </div>
+      </section>
+
+      <section id="Teaching" class="section">
+        <div class="container">
+          <h2 class="section-title">Music tuition</h2>
+          <div class="tuition{% if tuition.images and tuition.images.length %} has-images{% endif %}">
+            <div class="tuition-text">
+              <div class="rich">{{ tuition.body | safe }}</div>
+              <p class="members-label">A member of</p>
+              <div class="members">
+                <img eleventy:ignore src="/images/ISM.png" alt="Incorporated Society of Musicians" width="160" height="94" />
+                <img eleventy:ignore src="/images/RCO.png" alt="Royal College of Organists Accredited Teacher" width="132" height="94" />
+              </div>
+            </div>
+            {{ sectionImages(tuition.images, "Piano and organ lessons with David Thomas") }}
+          </div>
+        </div>
+      </section>
+
+      <section id="Contact" class="section section-dark">
+        <div class="container narrow">
+          <h2 class="section-title">Contact</h2>
+          <div class="rich center">{{ contact.body | safe }}</div>
+          <form class="contact-form" action="{{ site.formAction }}" method="POST">
+            <label>Name<input type="text" name="name" autocomplete="name" required /></label>
+            <label>Email<input type="email" name="email" autocomplete="email" required /></label>
+            <label>Message<textarea name="message" rows="6" required></textarea></label>
+            <input type="hidden" name="_subject" value="Website message" />
+            <input type="hidden" name="_next" value="{{ site.url }}/#Contact" />
+            <label class="hp" aria-hidden="true">Leave this empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off" /></label>
+            <button class="button" type="submit">Send message</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>&copy; {{ site.year }} David Thomas</p>
+        <div class="social">
+          <a href="https://www.facebook.com/profile.php?id=1342925540" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M13.5 21v-7.5h2.5l.4-3h-2.9V8.6c0-.9.3-1.5 1.5-1.5h1.5V4.4c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2.4H8v3h2.6V21h2.9z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/david.thomas096/" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M7.5 3h9A4.5 4.5 0 0 1 21 7.5v9a4.5 4.5 0 0 1-4.5 4.5h-9A4.5 4.5 0 0 1 3 16.5v-9A4.5 4.5 0 0 1 7.5 3zm4.5 5a4 4 0 1 0 0 8 4 4 0 0 0 0-8zm5-1.2v.01"/></svg>
+          </a>
+        </div>
+        <a href="#top" class="back-to-top">Back to top ↑</a>
+      </div>
+    </footer>
 
     <script>
+      // Mobile menu
+      var toggle = document.querySelector(".menu-toggle");
+      var nav = document.getElementById("site-nav");
+      toggle.addEventListener("click", function () {
+        var open = nav.classList.toggle("open");
+        toggle.setAttribute("aria-expanded", open);
+      });
+      nav.addEventListener("click", function (e) {
+        if (e.target.tagName === "A") {
+          nav.classList.remove("open");
+          toggle.setAttribute("aria-expanded", "false");
+        }
+      });
       // Links added in the editor to other websites open in a new tab.
       document.querySelectorAll(".rich a[href^='http']").forEach(function (a) {
-        if (a.hostname !== location.hostname) a.target = "_blank";
+        if (a.hostname !== location.hostname) {
+          a.target = "_blank";
+          a.rel = "noopener";
+        }
       });
     </script>
   </body>
-
-  <script>
-    (function (i, s, o, g, r, a, m) {
-      i["GoogleAnalyticsObject"] = r;
-      (i[r] =
-        i[r] ||
-        function () {
-          (i[r].q = i[r].q || []).push(arguments);
-        }),
-        (i[r].l = 1 * new Date());
-      (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
-      a.async = 1;
-      a.src = g;
-      m.parentNode.insertBefore(a, m);
-    })(
-      window,
-      document,
-      "script",
-      "https://www.google-analytics.com/analytics.js",
-      "ga"
-    );
-
-    ga("create", "UA-105800976-1", "auto");
-    ga("send", "pageview");
-  </script>
 </html>
