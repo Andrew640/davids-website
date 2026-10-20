@@ -5,6 +5,8 @@ const site = {
   url: "http://davidthomasorganist.co.uk",
   formAction: "https://formspree.io/davidthomas096@gmail.com",
   year: new Date().getFullYear(),
+  // Changes on every build so browsers fetch the new stylesheet after a deploy.
+  version: Date.now().toString(36),
 };
 
 export default function (eleventyConfig) {
