@@ -1,0 +1,202 @@
+# Pages CMS config: defines the editing screens at app.pagescms.org.
+# Each entry edits one file in content/; the site is rebuilt and published on save.
+media:
+  - name: images
+    label: Images
+    input: images
+    output: /images
+    extensions: [jpg, jpeg, png, webp]
+    rename: safe
+  - name: recordings
+    label: Recordings
+    input: recordings
+    output: /recordings
+    extensions: [mp3]
+    rename: safe
+
+content:
+  - name: home
+    label: Top of page
+    type: file
+    path: content/home.yml
+    format: yaml
+    fields:
+      - name: heading
+        label: Heading
+        type: text
+        description: Each new line here becomes a new line on the page.
+      - name: qualifications
+        label: Qualifications
+        type: string
+      - name: image
+        label: Photo
+        type: image
+        options:
+          media: images
+
+  - name: biography
+    label: Biography
+    type: file
+    path: content/biography.yml
+    format: yaml
+    fields:
+      - name: body
+        label: Text
+        type: rich-text
+        description: Press Enter for a new paragraph.
+        options:
+          format: html
+          media: false
+      - name: images
+        label: Photos
+        type: object
+        list: true
+        description: Shown below the text, in this order. Photos are always shown in full and resized automatically.
+        fields:
+          - name: image
+            label: Photo
+            type: image
+            required: true
+            options:
+              media: images
+          - name: caption
+            label: Caption (optional)
+            type: string
+
+  - name: recitals
+    label: Future recitals
+    type: file
+    path: content/recitals.yml
+    format: yaml
+    fields:
+      - name: body
+        label: Text
+        type: rich-text
+        description: Press Enter for a new paragraph.
+        options:
+          format: html
+          media: false
+      - name: images
+        label: Photos
+        type: object
+        list: true
+        description: Shown below the text, in this order. Photos are always shown in full and resized automatically.
+        fields:
+          - name: image
+            label: Photo
+            type: image
+            required: true
+            options:
+              media: images
+          - name: caption
+            label: Caption (optional)
+            type: string
+
+  - name: recordings
+    label: Recordings
+    type: file
+    path: content/recordings.yml
+    format: yaml
+    fields:
+      - name: groups
+        label: Groups
+        type: object
+        list: true
+        description: e.g. "Organ", "Choral". Each group has its own heading.
+        fields:
+          - name: heading
+            label: Heading
+            type: string
+            required: true
+          - name: tracks
+            label: Tracks
+            type: object
+            list: true
+            fields:
+              - name: title
+                label: Title
+                type: string
+                required: true
+              - name: file
+                label: MP3 file
+                type: file
+                required: true
+                options:
+                  media: recordings
+
+  - name: photos
+    label: Photos
+    type: file
+    path: content/photos.yml
+    format: yaml
+    fields:
+      - name: photos
+        label: Photos
+        type: object
+        list: true
+        description: Drag to reorder. Photos are always shown in full and resized automatically.
+        fields:
+          - name: image
+            label: Photo
+            type: image
+            required: true
+            options:
+              media: images
+          - name: caption
+            label: Caption
+            type: string
+
+  - name: tuition
+    label: Music tuition
+    type: file
+    path: content/tuition.yml
+    format: yaml
+    fields:
+      - name: body
+        label: Text
+        type: rich-text
+        description: Press Enter for a new paragraph.
+        options:
+          format: html
+          media: false
+      - name: images
+        label: Photos
+        type: object
+        list: true
+        description: Shown below the text, in this order. Photos are always shown in full and resized automatically.
+        fields:
+          - name: image
+            label: Photo
+            type: image
+            required: true
+            options:
+              media: images
+          - name: caption
+            label: Caption (optional)
+            type: string
+
+  - name: contact
+    label: Contact
+    type: file
+    path: content/contact.yml
+    format: yaml
+    fields:
+      - name: body
+        label: Text above the form
+        type: rich-text
+        options:
+          format: html
+          media: false
+
+  - name: settings
+    label: Search engine details
+    type: file
+    path: content/settings.yml
+    format: yaml
+    fields:
+      - name: title
+        label: Browser tab / Google title
+        type: string
+      - name: description
+        label: Google description
+        type: text
