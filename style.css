@@ -15,7 +15,7 @@ html {
   display: none;
   color: #fff;
   font-size: 22px;
-  background-color: #383b53;
+  background-color: #1e2b4a;
   position: absolute;
   right: 0;
   top: 96px;
@@ -129,10 +129,10 @@ a {
 }
 
 .button-purple {
-  color: #fff;
+  color: #1e2b4a;
   padding: 12px 24px;
   border-radius: 8px;
-  background-color: #617afa;
+  background-color: #f2a922;
   font-weight: 500;
   cursor: pointer;
 }
@@ -157,23 +157,26 @@ a {
 .main-des {
   font-size: 52px;
   line-height: 45px;
-  font-weight: 500;
+  font-weight: 300;
   margin-left: 30px;
   margin-right: 24px;
 }
 
 .main-img {
-  height: 400px;
-  background-size: cover;
+  display: block;
   width: 510px;
+  max-width: 90%;
+  max-height: 520px;
+  height: auto;
+  object-fit: contain;
   border-radius: 8px;
-  background-image: url("images/photoTop.jpg");
-  background-repeat: no-repeat;
   margin-right: 30px;
   margin-left: 24px;
 }
 
 .quals {
+  font-weight: 400;
+  letter-spacing: 0.04em;
   margin-top: 20px;
   line-height: 45px;
   font-size: 24px;
@@ -187,12 +190,13 @@ a {
 @media (max-width: 768px) {
   .background {
     flex-direction: column;
-    height: 800px;
+    height: auto;
+    min-height: 800px;
+    padding: 40px 0;
+    box-sizing: border-box;
   }
 
   .main-img {
-    display: flex;
-    height: 300px;
     margin-bottom: 40px;
   }
 
@@ -228,7 +232,7 @@ a {
   border-right: 30px solid transparent;
   margin-left: auto;
   margin-right: auto;
-  border-top: 30px solid #383b53;
+  border-top: 30px solid #1e2b4a;
 }
 
 .sec-small {
@@ -370,123 +374,62 @@ a {
 }
 
 .sec-g {
-  background-color: #383b53;
+  background-color: #1e2b4a;
   width: 100%;
   color: #ffffff;
 }
 
-.g-img {
-  height: 280px;
-  width: 100%;
-  margin: 0 auto;
+/* Photos are never cropped: each is scaled down to fit within its box. */
+.g-img,
+.section-img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
   border-radius: 8px;
-  background-repeat: no-repeat;
-  display: inline-block;
-  margin-top: 80px;
-  background-position: center top;
-  text-align: center;
-  background-size: 100%;
+  margin: 80px auto 0 auto;
 }
 
-.g-img-1 {
-  background-image: url("images/photo1.jpg");
-  background-position: center 10%;
+.g-img {
+  height: 300px;
+  object-fit: contain;
 }
 
-.g-img-2 {
-  background-image: url("images/photo2.jpg");
-  background-position: center 10%;
+.section-img {
+  max-height: 600px;
+  margin-top: 36px;
 }
 
-.g-img-3 {
-  background-image: url("images/photo3.jpg");
+.section-images {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
 }
 
-.g-img-4 {
-  background-image: url("images/photo4.jpg");
-  background-position: center 10%;
+.section-images .item {
+  max-width: 800px;
 }
 
-.g-img-5 {
-  background-image: url("images/photo5.jpg");
-  background-position: center 10%;
+figure.item {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
-.g-img-6 {
-  background-image: url("images/photo6.jpg");
-  background-position: center 10%;
+picture {
+  display: contents;
 }
-.g-img-7 {
-  background-image: url("images/photo7.jpg");
-  background-position: center 100%;
-}
-.g-img-8 {
-  background-image: url("images/photo8.jpg");
-}
-.g-img-9 {
-  background-image: url("images/photo9.jpg");
-  background-position: center;
-}
-.g-img-10 {
-  background-image: url("images/photo10.jpg");
-  height: 400px;
-}
-.g-img-11 {
-  background-image: url("images/photo11.jpg");
-  height: 400px;
-  background-position: center;
-}
-.g-img-12 {
-  background-image: url("images/photo12.jpg");
-}
-.g-img-13 {
-  background-image: url("images/photo13.jpg");
-}
-.g-img-14 {
-  background-image: url("images/Copenhagen.jpeg");
-}
-.g-img-15 {
-  background-image: url("images/Prague.jpeg");
-}
-.g-img-16 {
-  background-image: url("images/Hamburg.jpeg");
-}
-.g-img-17 {
-  background-image: url("images/Zurich.png");
-}
-.g-img-18 {
-  background-image: url("images/Croydon.png");
-}
-.g-img-19 {
-  background-image: url("images/RFH.png");
-}
-.g-img-20 {
-  background-image: url("images/Oxted.png");
-}
-.g-img-21 {
-  background-image: url("images/arnstadt.jpeg");
-}
-.g-img-22 {
-  background-image: url("images/rouen.jpeg");
-}
-.g-img-23 {
-  background-image: url("images/paris.jpeg");
-  background-position: center -240px;
-}
-.g-img-24 {
-  background-image: url("images/photo14.jpg");
-}
-.g-img-25 {
-  background-image: url("images/photo15.png");
-}
+
+
+
+
+
+
 
 @media (max-width: 768px) {
   .g-img {
-    width: 90%;
-  }
-
-  .g-img-23 {
-    background-position: center;
+    max-width: 90%;
+    height: auto;
   }
 }
 
@@ -515,11 +458,10 @@ a {
   font-size: 20px;
   border: none;
   border-radius: 8px;
-  color: #ffffff;
   cursor: pointer;
-  color: #fff;
+  color: #1e2b4a;
   padding: 12px 24px;
-  background-color: #617afa;
+  background-color: #f2a922;
   font-weight: 500;
   cursor: pointer;
 }
@@ -572,7 +514,7 @@ a.link:hover {
   padding-top: 20px;
 }
 
-div.item {
+.item {
   display: flex;
   text-align: center;
   max-width: 500px;
@@ -583,7 +525,7 @@ div.item {
 }
 
 @media (max-width: 768px) {
-  div.item {
+  .item {
     width: 100%;
     display: block;
   }
@@ -618,4 +560,34 @@ div.item {
   background-size: contain;
   background-repeat: no-repeat;
   background-image: url("images/RCO.png");
+}
+
+/* Text written in the editor (Pages CMS rich text) */
+.rich p {
+  margin: 0 0 1em 0;
+}
+
+.rich p:last-child {
+  margin-bottom: 0;
+}
+
+.rich a {
+  word-wrap: break-word;
+  border-bottom: 1px solid currentColor;
+}
+
+.rich a:hover {
+  opacity: 0.6;
+}
+
+.track {
+  margin: 1.1em 0 1.6em 0;
+}
+
+.track-title {
+  margin-bottom: 0.8em;
+}
+
+.recordings {
+  padding-bottom: 60px;
 }

@@ -1,0 +1,19 @@
+groups:
+  - heading: Organ
+    tracks:
+      - title: Prelude in C major, BWV 547, J. S. Bach
+        file: /recordings/Prelude in C major, BWV 547, J. S. Bach.mp3
+      - title: Allegro moderato from Sonata No. 1 in F minor, Op. 65, Felix Mendelssohn
+        file: /recordings/08 Allegro Moderato from Sonata No. 1 in F minor, Op. 65, Felix Mendelssohn.mp3
+      - title: Allegro assai vivace from Sonata No. 1 in F minor, Op. 65, Felix Mendelssohn
+        file: /recordings/Allegro assai vivace from Sonata No. 1 in F minor, Op. 65, Felix Mendelssohn.mp3
+      - title: Fugue in B major, Op. 99 No. 2, Camille Saint-Saëns
+        file: /recordings/10 Fugue in B major Op. 99, Camille Saint-Saens.mp3
+  - heading: Choral
+    tracks:
+      - title: And the Glory of the Lord (Chorus from Messiah), Handel
+        file: /recordings/And The Glory of the Lord (Chorus from Messiah), George Frederic Handel.mp3
+      - title: Carol of the Bells, Mykola Leontovych
+        file: /recordings/15 Carol of the Bells, Mykola Leontovych.mp3
+      - title: Hallelujah (Chorus from Messiah), Handel
+        file: /recordings/03 Hallelujah (Chorus from Messiah), George Frederic Handel.mp3

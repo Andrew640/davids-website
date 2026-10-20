@@ -1,0 +1,56 @@
+# Builds the site and uploads it to S3 whenever main changes
+# (including every save made in Pages CMS).
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+env:
+  BUCKET: s3://davidthomasorganist.co.uk
+  AWS_REGION: eu-west-1
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: npm run build
+
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      # Optimised images have a content hash in their name, so they can be cached forever.
+      - name: Upload optimised images
+        run: |
+          aws s3 sync _site/img "$BUCKET/img" --size-only \
+            --exclude "*.webp" --cache-control "public, max-age=31536000, immutable"
+          aws s3 sync _site/img "$BUCKET/img" --size-only \
+            --exclude "*" --include "*.webp" --content-type image/webp \
+            --cache-control "public, max-age=31536000, immutable"
+
+      - name: Upload originals, icons and recordings
+        run: |
+          aws s3 sync _site/images "$BUCKET/images" --size-only
+          aws s3 sync _site/recordings "$BUCKET/recordings" --size-only
+
+      # Uploaded last, once everything it points to is in place.
+      - name: Upload page and stylesheet
+        run: |
+          aws s3 cp _site/style.css "$BUCKET/style.css" --cache-control "public, max-age=300"
+          aws s3 cp _site/index.html "$BUCKET/index.html" --cache-control "no-cache"
