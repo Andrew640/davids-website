@@ -473,6 +473,12 @@ a {
   background-image: url("images/paris.jpeg");
   background-position: center -240px;
 }
+.g-img-24 {
+  background-image: url("images/photo14.jpg");
+}
+.g-img-25 {
+  background-image: url("images/photo15.png");
+}
 
 @media (max-width: 768px) {
   .g-img {
