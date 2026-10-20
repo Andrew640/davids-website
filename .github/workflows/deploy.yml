@@ -57,3 +57,10 @@ jobs:
             aws s3 cp "_site/$f" "$BUCKET/$f" --cache-control "public, max-age=3600"
           done
           aws s3 cp _site/index.html "$BUCKET/index.html" --cache-control "no-cache"
+
+      # Set the repo variable CLOUDFRONT_DISTRIBUTION_ID once CloudFront is in front of the bucket.
+      - name: Clear CloudFront cache
+        if: ${{ vars.CLOUDFRONT_DISTRIBUTION_ID != '' }}
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id "${{ vars.CLOUDFRONT_DISTRIBUTION_ID }}" --paths "/*"
