@@ -3,7 +3,7 @@ import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
 
 const site = {
   url: "https://davidthomasorganist.co.uk",
-  formAction: "https://formspree.io/davidthomas096@gmail.com",
+  formAction: "https://formspree.io/f/xdearywg",
   year: new Date().getFullYear(),
   // Changes on every build so browsers fetch the new stylesheet after a deploy.
   version: Date.now().toString(36),
@@ -51,6 +51,9 @@ export default function (eleventyConfig) {
         addressCountry: "GB",
       },
       areaServed: ["Sanderstead", "South Croydon", "Croydon", "Purley", "Warlingham"],
+      // David's Google Business Profile, so Google ties the site to its reviews.
+      hasMap: "https://maps.google.com/?cid=10533229887281777054",
+      sameAs: ["https://maps.google.com/?cid=10533229887281777054"],
     };
     const json = JSON.stringify({ "@context": "https://schema.org", "@graph": [person, lessons] });
     return json.replace(/</g, "\\u003c");

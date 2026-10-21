@@ -593,6 +593,7 @@ h3 {
 .contact-form input,
 .contact-form textarea {
   font: inherit;
+  font-size: 17px; /* 16px+ stops iPhones zooming in when a field is tapped */
   font-weight: 400;
   color: var(--ink);
   background: #fff;
@@ -675,4 +676,43 @@ h3 {
 
 .not-found .section-title {
   margin: 16px 0 0;
+}
+
+/* ---- Reviews ---- */
+.reviews {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.review {
+  margin: 0;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.stars {
+  color: var(--gold);
+  letter-spacing: 2px;
+  font-size: 18px;
+}
+
+.review blockquote {
+  margin: 0;
+  flex: 1;
+  line-height: 1.6;
+}
+
+.review figcaption {
+  font-weight: 600;
+  color: var(--navy);
+}
+
+.reviews-more {
+  margin: 36px 0 0;
 }

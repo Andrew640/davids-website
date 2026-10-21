@@ -175,6 +175,33 @@ content:
             label: Caption (optional)
             type: string
 
+  - name: reviews
+    label: Reviews
+    type: file
+    path: content/reviews.yml
+    format: yaml
+    fields:
+      - name: link
+        label: Google reviews link
+        type: string
+      - name: reviews
+        label: Reviews
+        type: object
+        list: true
+        description: Copy a few reviews from Google. The section is hidden while this list is empty.
+        fields:
+          - name: name
+            label: Reviewer's name
+            type: string
+          - name: rating
+            label: Stars (1-5)
+            type: number
+            default: 5
+          - name: text
+            label: Review text
+            type: text
+            required: true
+
   - name: contact
     label: Contact
     type: file

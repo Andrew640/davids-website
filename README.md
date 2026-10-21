@@ -8,6 +8,11 @@ Every push to `main` (including every save in Pages CMS) runs
 `.github/workflows/deploy.yml`, which builds the site with Eleventy, resizes
 photos to at most 1600px (WebP + JPEG) and uploads to the S3 bucket.
 
+The contact form posts to Formspree (`https://formspree.io/f/xdearywg`, set as
+`site.formAction` in `eleventy.config.js`); spam filtering and the reCAPTCHA check are
+configured in the Formspree dashboard. Google reviews shown on the page are copied by
+hand into `content/reviews.yml` (Pages CMS: Reviews); the section is hidden while empty.
+
 ## Local preview
 
 ```bash
