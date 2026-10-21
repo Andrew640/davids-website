@@ -779,3 +779,9 @@ h3 {
     scroll-snap-align: start;
   }
 }
+
+.reviews-fallback {
+  margin: 0;
+  text-align: center;
+  font-size: 19px;
+}

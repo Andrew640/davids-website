@@ -191,6 +191,9 @@
               {%- endif %}
             </figure>
             {%- endif %}{% endfor %}
+            {%- if not hasManualReviews %}
+            <p class="reviews-fallback">See what parents and students say about lessons with David on Google.</p>
+            {%- endif %}
           </div>
           <p class="reviews-attribution center" hidden>Reviews from Google Maps</p>
           <p class="center reviews-more">
