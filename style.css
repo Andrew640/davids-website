@@ -509,9 +509,15 @@ h3 {
   }
 }
 
-@media (max-width: 420px) {
-  .gallery-item figcaption {
-    font-size: 13px;
+/* Phones: one photo per row, as wide as the screen allows. */
+@media (max-width: 600px) {
+  .gallery {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .container.wide {
+    padding: 0 12px;
   }
 }
 
@@ -760,23 +766,30 @@ h3 {
   color: var(--muted);
 }
 
-/* On phones the reviews become a swipeable slider. */
+/* On phones the reviews become a swipeable slider that settles each card in the
+   middle of the screen. The side padding lets the first and last cards centre too. */
 @media (max-width: 700px) {
   .reviews {
     flex-wrap: nowrap;
     justify-content: flex-start;
+    gap: 14px;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    scroll-padding: 0 24px;
     margin: 0 -24px;
-    padding: 4px 24px 12px;
+    padding: 4px 9vw 12px;
     -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .reviews::-webkit-scrollbar {
+    display: none;
   }
 
   .review {
-    flex: 0 0 85%;
+    flex: 0 0 82vw;
     max-width: none;
-    scroll-snap-align: start;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
   }
 }
 
