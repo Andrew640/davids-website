@@ -174,14 +174,35 @@
         </div>
       </section>
 
-      {%- set hasManualReviews = reviews.reviews and reviews.reviews.length %}
-      {%- if site.placesKey or hasManualReviews %}
       <section id="Reviews" class="section section-tint">
         <div class="container">
           <h2 class="section-title">Reviews</h2>
-          <p class="reviews-summary center" hidden></p>
-          {#- Live Google reviews replace these hand-entered ones when they load. #}
-          <div class="reviews" id="google-reviews" data-place-id="{{ site.placeId }}" data-key="{{ site.placesKey }}">
+          {%- set live = googleReviews and googleReviews.reviews.length %}
+          {%- if live and googleReviews.rating %}
+          <p class="reviews-summary center">{{ googleReviews.rating.toFixed(1) }} ★ from {{ googleReviews.count }} reviews on Google</p>
+          {%- endif %}
+          <div class="reviews">
+            {%- if live %}
+            {%- for r in googleReviews.reviews %}
+            <figure class="review">
+              <div class="stars" aria-label="{{ r.rating }} out of 5 stars">{% for i in range(0, r.rating) %}★{% endfor %}</div>
+              <blockquote>{{ r.text }}</blockquote>
+              <figcaption class="review-author">
+                {%- if r.authorPhoto %}
+                <img eleventy:ignore src="{{ r.authorPhoto }}" alt="" width="32" height="32" loading="lazy" referrerpolicy="no-referrer" />
+                {%- endif %}
+                {%- if r.authorUrl %}
+                <a href="{{ r.authorUrl }}" target="_blank" rel="noopener">{{ r.author }}</a>
+                {%- else %}
+                <span>{{ r.author }}</span>
+                {%- endif %}
+                {%- if r.when %}
+                <span class="review-when">{{ r.when }}</span>
+                {%- endif %}
+              </figcaption>
+            </figure>
+            {%- endfor %}
+            {%- else %}
             {%- for review in reviews.reviews %}{% if review.text %}
             <figure class="review">
               <div class="stars" aria-label="{{ review.rating or 5 }} out of 5 stars">{% for i in range(0, review.rating or 5) %}★{% endfor %}</div>
@@ -190,18 +211,20 @@
               <figcaption>{{ review.name }}</figcaption>
               {%- endif %}
             </figure>
-            {%- endif %}{% endfor %}
-            {%- if not hasManualReviews %}
+            {%- endif %}
+            {%- else %}
             <p class="reviews-fallback">See what parents and students say about lessons with David on Google.</p>
+            {%- endfor %}
             {%- endif %}
           </div>
-          <p class="reviews-attribution center" hidden>Reviews from Google Maps</p>
+          {%- if live %}
+          <p class="reviews-attribution center">Reviews from Google Maps</p>
+          {%- endif %}
           <p class="center reviews-more">
             <a class="button" href="{{ reviews.link }}" target="_blank" rel="noopener">Read all reviews on Google</a>
           </p>
         </div>
       </section>
-      {%- endif %}
 
       <section id="Contact" class="section section-dark">
         <div class="container narrow">
@@ -234,9 +257,6 @@
       </div>
     </footer>
 
-    {%- if site.placesKey %}
-    <script src="/reviews.js?v={{ site.version }}" defer></script>
-    {%- endif %}
     <script>
       // Mobile menu
       var toggle = document.querySelector(".menu-toggle");

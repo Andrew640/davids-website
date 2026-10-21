@@ -5,20 +5,56 @@ const site = {
   url: "https://davidthomasorganist.co.uk",
   formAction: "https://formspree.io/f/xdearywg",
   year: new Date().getFullYear(),
-  // Google Places: David's Business Profile and a browser key that only works on this site.
+  // David's Google Business Profile ("David Thomas Piano Lessons").
   placeId: "ChIJnTuyKkAxh4cRnkn1aMaMLZI",
-  placesKey: "AIzaSyBzytNp0tz98rr4unJQv51AuvKNZYZgT_A", // browser key: only works on this site, Places API only, capped at 30 lookups/day
   // Changes on every build so browsers fetch the new stylesheet after a deploy.
   version: Date.now().toString(36),
 };
+
+// Fetches David's Google reviews once per build (the deploy runs daily and on every
+// edit). Needs GOOGLE_PLACES_KEY; without it, or if Google is unreachable, the
+// Reviews section shows a link to Google instead.
+async function fetchGoogleReviews() {
+  const key = process.env.GOOGLE_PLACES_KEY;
+  if (!key) return null;
+  try {
+    const res = await fetch(
+      `https://places.googleapis.com/v1/places/${site.placeId}?languageCode=en-GB`,
+      {
+        headers: {
+          "X-Goog-Api-Key": key,
+          "X-Goog-FieldMask": "rating,userRatingCount,reviews",
+          // The key is restricted to the site's address.
+          Referer: `${site.url}/`,
+        },
+      },
+    );
+    if (!res.ok) throw new Error(`Places API ${res.status}`);
+    const place = await res.json();
+    const reviews = (place.reviews || [])
+      .filter((r) => r.text?.text)
+      .map((r) => ({
+        rating: r.rating,
+        text: r.text.text.length > 360 ? r.text.text.slice(0, 340).replace(/\s+\S*$/, "") + "…" : r.text.text,
+        author: r.authorAttribution?.displayName,
+        authorUrl: r.authorAttribution?.uri,
+        authorPhoto: r.authorAttribution?.photoUri,
+        when: r.relativePublishTimeDescription,
+      }));
+    return { rating: place.rating, count: place.userRatingCount, reviews };
+  } catch (err) {
+    console.warn(`[reviews] Could not load Google reviews: ${err.message}`);
+    return null;
+  }
+}
 
 export default function (eleventyConfig) {
   // content/*.yml (edited in Pages CMS) become template data: content/photos.yml -> `photos`
   eleventyConfig.addDataExtension("yml", (contents) => loadYaml(contents));
   eleventyConfig.addGlobalData("site", site);
+  eleventyConfig.addGlobalData("googleReviews", fetchGoogleReviews);
 
   eleventyConfig.addPassthroughCopy("style.css");
-  eleventyConfig.addPassthroughCopy("reviews.js");
   eleventyConfig.addPassthroughCopy("images");
   eleventyConfig.addPassthroughCopy("recordings");
 

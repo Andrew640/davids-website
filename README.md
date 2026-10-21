@@ -10,8 +10,10 @@ photos to at most 1600px (WebP + JPEG) and uploads to the S3 bucket.
 
 The contact form posts to Formspree (`https://formspree.io/f/xdearywg`, set as
 `site.formAction` in `eleventy.config.js`); spam filtering and the reCAPTCHA check are
-configured in the Formspree dashboard. Google reviews shown on the page are copied by
-hand into `content/reviews.yml` (Pages CMS: Reviews); the section is hidden while empty.
+configured in the Formspree dashboard. Google reviews are fetched from the Places API at build time (GitHub secret
+`GOOGLE_PLACES_KEY`, Google Cloud project `davidthomas-site-reviews`, capped at 30 lookups a
+day) and built into the page; the deploy also runs daily at 06:00 UTC to refresh them. If
+the lookup fails, the section links to Google instead.
 
 ## Local preview
 
