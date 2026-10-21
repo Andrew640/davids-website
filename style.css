@@ -680,12 +680,15 @@ h3 {
 
 /* ---- Reviews ---- */
 .reviews {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 20px;
 }
 
 .review {
+  flex: 1 1 300px;
+  max-width: 340px;
   margin: 0;
   background: #fff;
   border: 1px solid var(--line);
@@ -715,4 +718,64 @@ h3 {
 
 .reviews-more {
   margin: 36px 0 0;
+}
+
+.reviews-summary {
+  margin: -16px 0 28px;
+  font-weight: 600;
+  color: var(--navy);
+}
+
+.review-author {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+}
+
+.review-author img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.review-author a {
+  text-decoration: none;
+}
+
+.review-author a:hover {
+  text-decoration: underline;
+}
+
+.review-when {
+  width: 100%;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.reviews-attribution {
+  margin: 16px 0 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* On phones the reviews become a swipeable slider. */
+@media (max-width: 700px) {
+  .reviews {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 0 24px;
+    margin: 0 -24px;
+    padding: 4px 24px 12px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .review {
+    flex: 0 0 85%;
+    max-width: none;
+    scroll-snap-align: start;
+  }
 }

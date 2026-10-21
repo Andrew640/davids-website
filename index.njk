@@ -174,11 +174,14 @@
         </div>
       </section>
 
-      {%- if reviews.reviews and reviews.reviews.length %}
+      {%- set hasManualReviews = reviews.reviews and reviews.reviews.length %}
+      {%- if site.placesKey or hasManualReviews %}
       <section id="Reviews" class="section section-tint">
         <div class="container">
           <h2 class="section-title">Reviews</h2>
-          <div class="reviews">
+          <p class="reviews-summary center" hidden></p>
+          {#- Live Google reviews replace these hand-entered ones when they load. #}
+          <div class="reviews" id="google-reviews" data-place-id="{{ site.placeId }}" data-key="{{ site.placesKey }}">
             {%- for review in reviews.reviews %}{% if review.text %}
             <figure class="review">
               <div class="stars" aria-label="{{ review.rating or 5 }} out of 5 stars">{% for i in range(0, review.rating or 5) %}★{% endfor %}</div>
@@ -189,6 +192,7 @@
             </figure>
             {%- endif %}{% endfor %}
           </div>
+          <p class="reviews-attribution center" hidden>Reviews from Google Maps</p>
           <p class="center reviews-more">
             <a class="button" href="{{ reviews.link }}" target="_blank" rel="noopener">Read all reviews on Google</a>
           </p>
@@ -227,6 +231,9 @@
       </div>
     </footer>
 
+    {%- if site.placesKey %}
+    <script src="/reviews.js?v={{ site.version }}" defer></script>
+    {%- endif %}
     <script>
       // Mobile menu
       var toggle = document.querySelector(".menu-toggle");

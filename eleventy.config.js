@@ -5,6 +5,9 @@ const site = {
   url: "https://davidthomasorganist.co.uk",
   formAction: "https://formspree.io/f/xdearywg",
   year: new Date().getFullYear(),
+  // Google Places: David's Business Profile and a browser key that only works on this site.
+  placeId: "ChIJnTuyKkAxh4cRnkn1aMaMLZI",
+  placesKey: "AIzaSyBzytNp0tz98rr4unJQv51AuvKNZYZgT_A", // browser key: only works on this site, Places API only, capped at 30 lookups/day
   // Changes on every build so browsers fetch the new stylesheet after a deploy.
   version: Date.now().toString(36),
 };
@@ -15,6 +18,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addGlobalData("site", site);
 
   eleventyConfig.addPassthroughCopy("style.css");
+  eleventyConfig.addPassthroughCopy("reviews.js");
   eleventyConfig.addPassthroughCopy("images");
   eleventyConfig.addPassthroughCopy("recordings");
 
